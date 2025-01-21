@@ -12,28 +12,47 @@
         <button onclick="choose('right')">Go Right</button>
     </div>
     <script>
-        let stories = {};
-
-        // Fetch stories from external JSON file
-        fetch('http://text-game-data.qincai.hackclub.app/static/stories.json')
-            .then(response => response.json())
-            .then(data => {
-                stories = data;
-                // Initial setup if needed
-                displayText(stories.start, () => {
-                    document.getElementById("game-box").innerHTML += getNextButtons('start');
-                });
-            });
+        const stories = {
+            start: "You find yourself at a crossroads in an enchanted forest. Do you go left or right?",
+            left: "You walk down the path and find a treasure chest. Do you open it or leave it?",
+            right: "You encounter a friendly dragon. Do you talk to it or run away?",
+            open: "The chest is filled with gold! You're rich! But wait, there's also a mysterious scroll. Do you read the scroll or take the gold and continue?",
+            leave: "You leave the chest and continue your journey. Suddenly, you stumble upon a secret cave. Do you enter the cave or keep walking?",
+            talk: "The dragon shares its wisdom with you, and you gain new knowledge. The dragon also offers to fly you to a distant land. Do you accept the ride or thank the dragon and proceed on foot?",
+            run: "You run away and safely return home, but your adventure feels incomplete.",
+            read: "The scroll contains a spell that grants you magical powers! You become a powerful wizard and live happily ever after. Congratulations!",
+            take: "You take the gold and continue your journey, feeling richer but curious about what the scroll might have contained. However, the next day, you encounter a mysterious traveler who offers you a choice: return the gold for a greater reward or keep it.",
+            enter: "You enter the cave and find a hidden underground city filled with wonders. Your adventure continues as you explore this new world, including hidden treasures and ancient secrets.",
+            keepWalking: "You keep walking and eventually find your way out of the forest. It's a peaceful ending to an unforgettable adventure.",
+            accept: "The dragon flies you to a distant land where new adventures await. You've made a lifelong friend and a tale to tell.",
+            proceed: "You proceed on foot and discover many hidden secrets of the forest. Your journey is filled with fascinating experiences.",
+            returnGold: "You decide to return the gold to the traveler. He rewards you with a map to a hidden treasure, setting you off on a new adventure filled with excitement and danger!",
+            keepGold: "You choose to keep the gold. While you enjoy your newfound wealth, you always wonder what could have been if you had taken the traveler's offer.",
+            exploreCity: "In the underground city, you meet an ancient civilization. They share their advanced technology and magic with you, drastically changing your life.",
+            escapeForest: "As you continue walking, you come across a hidden trail that leads you out of the forest. You feel a sense of accomplishment and readiness for future adventures.",
+            magicRing: "You discover a magic ring that grants invisibility. Do you use the ring for good or mischief?",
+            dragonFriend: "The dragon becomes your loyal friend and companion. Together, you embark on legendary adventures and protect the realm from dark forces.",
+            hiddenTemple: "You find a hidden temple with ancient artifacts. Do you explore the temple or leave it untouched?",
+            exploreTemple: "Inside the temple, you discover powerful relics that give you extraordinary abilities. You become a renowned adventurer known for your bravery.",
+            leaveTemple: "You decide to leave the temple untouched, respecting its ancient mysteries. As you walk away, you feel a sense of peace and fulfillment.",
+            wizardDuel: "You encounter a rival wizard who challenges you to a duel. Do you accept the duel or try to resolve it peacefully?",
+            acceptDuel: "You engage in an epic wizard duel and emerge victorious, gaining respect and recognition throughout the land.",
+            resolvePeacefully: "You resolve the conflict peacefully, gaining a new ally and a powerful friendship that lasts a lifetime."
+        };
 
         function choose(option) {
             const storyText = stories[option] || stories.start;
             displayText(storyText, () => {
-                document.getElementById('game-box').innerHTML += getNextButtons(option);
+                document.getElementById("game-box").innerHTML += getNextButtons(option);
             });
         }
 
         function getNextButtons(option) {
             switch (option) {
+                case 'start':
+                    return '<p id="story">You find yourself at a crossroads in an enchanted forest. Do you go left or right?</p>' +
+                           '<button onclick="choose(\'left\')">Go Left</button>' +
+                           '<button onclick="choose(\'right\')">Go Right</button>';
                 case 'left':
                     return '<button onclick="choose(\'open\')">Open the Chest</button><button onclick="choose(\'leave\')">Leave the Chest</button>';
                 case 'right':
