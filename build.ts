@@ -1,6 +1,9 @@
 /*
 Originally made by Devarsh(@webdev03)
 Revised by @QinCai-rui (aka myself)
+
+This program is licensed under the CC0 license. 
+See https://github.com/webdev03/quick-maths-saycheese/blob/main/LICENSE for more info
 */
 
 
